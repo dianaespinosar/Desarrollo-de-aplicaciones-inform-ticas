@@ -1,0 +1,50 @@
+dai
+Apl1cac10nes2018
+
+u: sa
+p: adminadmin
+
+
+--create database producto //Comando para crear base de datos
+--use productos    Comando para establecer que tiene que trabajar en producto y no en master
+/*CREATE TABLE producto(
+	codigo varchar(3), --3 caracteres
+	nombre varchar(30), --30 caracteres
+	precio decimal (6,2), --6 dígitos y 2 decimales
+	fechaAlta date, --fecha
+	primary key(codigo))
+--agregar productos
+insert into producto values ('a01', 'afilador', 2.50, '2019-08-27')
+insert into producto values ('m01', 'mesa redonda', 112.50, '2019-08-28')
+insert into producto values ('m02', 'mesa cuadrada', 110.50, '2019-08-28')
+--seleccionar todos los productos de la tabla
+select *from producto --veo la tabla
+
+select * from producto where nombre = 'afilador' --muestra solo el renglón de afilador
+
+select precio, fechaAlta from producto where nombre = 'afilador' --muestra solo cierta información del afilador
+
+select *from producto where nombre like 'mesa%' --muestra los renglones donde el nombre inicia con mesa
+
+select *from producto where precio > 100 --muestra los renglones con precio mayor a 100
+
+select AVG(precio) from producto where left(nombre,4) = 'mesa' --promedio de los precios de las mesas
+
+select AVG(precio) from producto --promedio de los precios de toda la tabla
+
+alter table producto add categoria varchar(10) --agregar nueva columna
+
+update producto set categoria = 'casa' --todos van a tener casa en categoría
+
+
+update producto set categoria = 'mesa' where left(nombre,4)= 'mesa' --nombrar categorias con cierto nombre
+
+select distinct categoria from producto  --muestra las diferentes categorías que hay en la tabla
+
+
+select  categoria, count(*) as cuantos from producto group by categoria --as cuantos es el nombre de la columna y cuenta cuantos por categoría
+
+group by es distingir de que columna vas a hacer la distinción de tipos distintos y cuantos 
+
+
+*/
