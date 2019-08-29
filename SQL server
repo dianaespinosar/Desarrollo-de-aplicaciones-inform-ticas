@@ -5,7 +5,7 @@ u: sa
 p: adminadmin
 
 
---create database producto //Comando para crear base de datos
+--create database productos //Comando para crear base de datos
 --use productos    Comando para establecer que tiene que trabajar en producto y no en master
 /*CREATE TABLE producto(
 	codigo varchar(3), --3 caracteres
