@@ -27,4 +27,27 @@ select empleado$.nombre, empleado$.oficio , departamento$.localizacion from empl
  where empleado$.deptoNo = departamento$.deptoNo and empleado$.salario between 10000 and 13000
  14.	Calcula el salario mínimo de los empleados del departamento de ventas
  select MIN(empleado$.salario) from empleado$, departamento$ where empleado$.deptoNo = departamento$.deptoNo and nombreDepto = 'Ventas'*/
+ 16.  ¿cuántos empleados hay en el departamento de ventas?
+select COUNT(*) as NumEmpleados from empleado$, departamento$ where empleado$.deptoNo = departamento$.deptoNo and nombreDepto= 'ventas'  
+
  
+17.     Mostrar el número de empleados de cada departamento
+select departamento$.nombreDepto , count(*) as numEmpleados from empleado$, departamento$  where empleado$.deptoNo = departamento$.deptoNo  group by departamento$.nombreDepto
+	 
+ 
+18.     Mostrar los departamentos con más de 5 empleados
+select departamento$.nombreDepto , count(*) as numEmpleados from empleado$, departamento$  where empleado$.deptoNo = departamento$.deptoNo
+  group by departamento$.nombreDepto having count(*) > 5
+ 
+19.     Mostrar el nombre, salario y nombre del departamento de los empleados que tengan el mismo oficio que 'Castillo Luis Daniel (no Castillo Pedro porque en vez de Analista dice Analisita) 
+
+select empleado$.nombre, empleado$.salario, departamento$.nombreDepto from empleado$, Departamento$ where empleado$.deptoNo = departamento$. deptoNo and 
+empleado$.oficio = (select empleado$.oficio from empleado$ where nombre = 'Castillo Luis Daniel')
+ 
+ 
+20.     Mostrar el nombre, salario y nombre del departamento de los empleados que tengan el mismo oficio que 'Castillo Luis Daniel (no Castillo Pedro porque en vez de Analista dice Analisita) 
+y que no tengan comisión
+
+select empleado$.nombre, empleado$.salario, departamento$.nombreDepto from empleado$, Departamento$ where empleado$.deptoNo = departamento$. deptoNo and 
+empleado$.oficio = (select empleado$.oficio from empleado$ where nombre = 'Castillo Luis Daniel') and empleado$.comision = 0
+
