@@ -1,0 +1,37 @@
+--definición de las tablas del ejercicio de UBER
+--modelo relacional 
+--coche(idCoche(PK), modelo, placa)
+--conductor(idConductor(PK), telefono, nomConductor)
+--viaje(idViaje(PK), direccion)
+--rutaViaje(idViaje(PK)(FK), idRuta(PK)(FK))
+--ruta(idRuta(PK), numeroViajes, idCoche(FK), idConductor(FK))
+--Script
+
+create table coche(
+	idCoche	smallint not null primary key,
+	modelo 	char(30),
+	placa 	char(8))
+
+
+create table conductor(
+	idConductor 	smallint not null primary key,
+	telefono 	char(30),
+	numConductor 	char(30))
+
+create table viaje(
+	idViaje 	smallint not null primary key,
+	direccion 	char(30))
+
+create table ruta(
+	idRuta smallint not null primary key,
+	numeroViajes 	smallint,
+	idCoche		smallint references coche,
+	idConductor	smallint references conductor)
+
+
+
+create table rutaViaje(
+	idViaje	smallint references viaje,
+	idRuta 	smallint references ruta,
+		primary key(idViaje, idRuta))
+
