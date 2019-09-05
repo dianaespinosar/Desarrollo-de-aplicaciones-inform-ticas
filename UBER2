@@ -1,0 +1,18 @@
+1.	Mostrar los nombres (ordenados Z .. A) de los conductores sin repeticiones y la columna se debe llamar nombreCond.
+select distinct NomCond as nombreCond  from conductor order by nomCond desc
+2.	Obtener el id del conductor, su nombre y los id de las rutas en las que trabaja.
+select conductor.IdCond, NomCond, idRuta from conductor inner join ruta on conductor.idCond = ruta.idCond order by NomCond
+
+3.	Listar el (o los) id del conductor (es) que trabaja (n) en Perisur.
+select ruta.idCond from ruta, ruta_viaje, viaje where  ruta.idRuta = ruta_viaje.idRuta and viaje.idViaje = ruta_viaje.idViaje and  viaje.direccion = 'perisur'
+4.	Los Ids de las rutas con el mayor número de viajes.
+
+select top 1 idRuta from ruta order by numeroViajes desc
+5.	Obtener el promedio de viajes del conductor PEPE.
+select AVG(ruta.numeroViajes) as promedioViajes from ruta inner join conductor on conductor.IdCond = ruta.idCond where conductor.NomCond = 'PEPE'
+6.	Listar el modelo de los autos que tengan viajes en Chapultepec o reforma, pero no en lomas.
+select coche.modelo from coche inner join ruta on coche.id_coche = ruta.Idcoche inner join ruta_viaje on ruta.idRuta = ruta_viaje.idRuta inner join viaje on viaje.idViaje = ruta_viaje.idViaje where viaje.direccion like 'chapultepec' or viaje.direccion like 'reforma' and viaje.direccion not like 'lomas'
+7.	Mostrar el id de las rutas que tienen más de un viaje registrado.
+select ruta.idRuta, ruta.numeroViajes from ruta where ruta.numeroViajes > 1
+8.	Obtener el nombre de los conductores que tienen viajes tanto a Perisur como a barranca (a ambos, no sólo a uno u otro).
+select conductor.NomCond from ruta, ruta_viaje, viaje, conductor where  ruta.idRuta = ruta_viaje.idRuta and viaje.idViaje = ruta_viaje.idViaje and conductor.IdCond = ruta.idCond and viaje.direccion like 'barranca' and conductor.IdCond in (select ruta.idCond from ruta, ruta_viaje, viaje where  ruta.idRuta = ruta_viaje.idRuta and viaje.idViaje = ruta_viaje.idViaje and  viaje.direccion = 'perisur')
