@@ -48,3 +48,9 @@ group by es distingir de que columna vas a hacer la distinción de tipos distint
 
 
 */
+
+
+
+
+
+from tabla1, tabla2,  where tabla1.id = tabla2.id = from tabla1 inner join tabla2 on tabla1.id = tabla2.id
